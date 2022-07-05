@@ -16,9 +16,9 @@ function SortingMain() {
     }
 
     return (
-        <div>
+        <div className="w-100 justify-content-center">
             <h1 className="text-center my-2">Sorter</h1>
-            <div className="array-container">
+            <div className="array-container py-2 w-100 justify-content-center d-flex align-items-end">
                 {state.map((value, i) => (
                     <div className="array-value" key={i} style={{ height: `${value}px` }}></div>
                 ))}

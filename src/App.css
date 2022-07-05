@@ -1,7 +1,5 @@
 .array-container {
-  position: fixed;
-  left: 15%;
-  top: 20%;
+  position: flex;
 }
 
 .array-value {
