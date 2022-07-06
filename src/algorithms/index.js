@@ -1,6 +1,6 @@
-//Merge sort function
+//Merge sort function - returns series of animations to do, not merged array
 
-export function mergeSort(array){
+export function mergeSortAnimations(array){
 
     function merge(left, right, mid, array, arrayDup, animations ) {
         let pr = mid+1;
@@ -37,8 +37,8 @@ export function mergeSort(array){
         
         const mid = Math.floor((left+right)/2);
 
-        sort(left,mid,array,arrayDup,animations);
-        sort(mid+1,right,array,arrayDup,animations);
+        sort(left,mid,arrayDup,array,animations);
+        sort(mid+1,right,arrayDup,array,animations);
         merge(left,right,mid,array,arrayDup,animations);
     }
 
