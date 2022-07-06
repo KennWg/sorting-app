@@ -2,24 +2,48 @@
 
 export function mergeSort(array){
 
-    function merge(left, right ) {
-        const arr = [];
+    function merge(left, right, mid, array, arrayDup, animations ) {
+        let pr = mid+1;
+        let pl = left;
+        let pt = left;
 
-        while(left.length && right.length){
-            if(left[0] < right[0]){
-                arr.push(left.shift());
+        while(pl <= mid && pr <= right){
+            animations.push([pl,pr]);
+            animations.push([pl,pr]);
+            if(arrayDup[pl] <= arrayDup[pr]){
+                animations.push([pt, arrayDup[pl]]);
+                array[pt++] = arrayDup[pl++];
             } else {
-                arr.push(right.shift());
+                animations.push([pt, arrayDup[pr]]);
+                array[pt++] = arrayDup[pr++];
             }
         };
-
-        return [...arr, ...left, ...right];
+        while(pl <= mid){
+            animations.push([pl, pl]);
+            animations.push([pl, pl]);
+            animations.push([pt, arrayDup[pl]]);
+            array[pt++] = arrayDup[pl++];
+        };
+        while(pr <= right){
+            animations.push([pr,pr]);
+            animations.push([pr,pr]);
+            animations.push([pt, arrayDup[pr]]);
+            array[pt++] = arrayDup[pr++];
+        }
     }
 
-    const mid = array.length/2;
+    function sort(left, right, array, arrayDup, animations) {
+        if(left === right) return;
+        
+        const mid = Math.floor((left+right)/2);
 
-    if(array.length <= 1) return array;
+        sort(left,mid,array,arrayDup,animations);
+        sort(mid+1,right,array,arrayDup,animations);
+        merge(left,right,mid,array,arrayDup,animations);
+    }
 
-    const left = arr.splice(0, mid);
-    return merge(mergeSort(left), mergeSort(array));
+    const animations = [];
+    const arrayDup = array.slice();
+    sort(0, array.length-1, array, arrayDup, animations);
+    return animations;
 }
