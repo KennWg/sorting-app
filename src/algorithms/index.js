@@ -47,3 +47,49 @@ export function mergeSortAnimations(array){
     sort(0, array.length-1, array, arrayDup, animations);
     return animations;
 }
+
+//Heap sort
+
+export function heapSortAnimations(array, n) {
+
+    function heapify(array, n, i){
+        let largest = i;
+        let l = 2 * i + 1;
+        let r = 2 * i + 2;
+
+        if(l < n && array[l] > array[largest]){
+            largest = l;
+        }
+        if(r < n && array[r] > array[largest]){
+            largest = r;
+        }
+
+        if(largest!== i){
+            let temp = array[i];
+            array[i] = array[largest];
+            array[largest] = temp;
+            animations.push([i, largest]);
+            animations.push([i, largest]);
+            animations.push([i, array[i], largest, array[largest]]);
+            heapify(array, n, largest);
+        }
+    }
+
+    const animations = [];
+
+    for(let i = parseInt(n/2 -1); i>= 0; i--){
+        heapify(array, n, i);
+    }
+
+    for(let i = n-1; i >=0; i--){
+        let temp = array[0];
+        array[0] = array[i];
+        array[i] = temp;
+        animations.push([0, i]);
+        animations.push([0, i]);
+        animations.push([0, array[0], i, array[i]]);
+        heapify(array, i, 0);
+    }
+
+    return animations;
+}
