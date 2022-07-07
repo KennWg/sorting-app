@@ -93,3 +93,48 @@ export function heapSortAnimations(array, n) {
 
     return animations;
 }
+
+//Quick sort
+
+export function quickSortAnimations(array) {
+
+    function partition(array, start, end){
+        const pivot = array[end];
+        let pivotIndex = start;
+
+        for(let i = start; i < end; i++){
+            if(array[i] < pivot){
+                let temp = array[i];
+                array[i] = array[pivotIndex];
+                array[pivotIndex] = temp;
+                animations.push([pivotIndex, i]);
+                animations.push([pivotIndex, i]);
+                animations.push([pivotIndex, array[pivotIndex], i, array[i]]);
+                pivotIndex++;
+            }
+        }
+
+        let temp = array[pivotIndex];
+        array[pivotIndex] = array[end];
+        array[end] = temp;
+        animations.push([pivotIndex, end]);
+        animations.push([pivotIndex, end]);
+        animations.push([pivotIndex, array[pivotIndex], end, array[end]]);
+
+        return pivotIndex;
+    };
+
+    function quickSort(array, start, end) {
+        if(start>=end) return;
+
+        let index = partition(array, start, end);
+    
+        quickSort(array, start, index-1);
+        quickSort(array, index + 1, end);
+    } 
+
+    const animations = [];
+    quickSort(array, 0, array.length -1);
+
+    return animations;
+}
