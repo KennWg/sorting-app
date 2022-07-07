@@ -1,3 +1,19 @@
+# Sorting Visualizer
+
+This project was done using React and JavaScript as a learning tool for me so I can visualize the various sorting algorithms I was learning as well as to practice using React.  4 options are currently available to be visualized - merge sort, heap sort, quick sort and bubble sort.  
+
+## Screenshot
+![Screenshot](/Screenshot.png)
+
+## Link
+Link to the page can be found at https://kennwg.github.io/sorting-app/ 
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
